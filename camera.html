@@ -1,80 +1,209 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 
-    <link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
-    <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
-    <link rel="stylesheet" type="text/css" href="vendors/css/animate.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/queries.css">
-    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,300italic' rel='stylesheet' type='text/css'>
-    <!--Gestion CAM-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="resources/js/camera.js"></script>
-    <title>CAM</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="resources/css/style2.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+    crossorigin="anonymous"></script>
+
+  <script>
+    var latitude = "",
+      longitude = "",
+      waitting = true;
+    $(document).ready(function () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+          waitting = false;
+        });
+
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    });
+
+    function setCoordonnees() {
+      $("#latitude").empty().append(latitude);
+      $("#longitude").empty().append(longitude);
+    }
+  </script>
+
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="row">
-                <img src="resources/img/isen_cam.png" alt="ISEN cam logo" class="logo">
-                <ul class="main-nav js--main-nav">
-                    <li><a href="index.html">Accueil</a></li>
-                </ul>
-                <a class="mobile-nav-icon js--nav-icon"><i class="ion-navicon-round"></i></a>
-            </div>
-        </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>CAMERA GL</H1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 offset-md-3" style="background-color: black; padding: 5px; max-width: 650px;">
         <div class="row">
+          <div class="col-sm-12">
             <video id="myVideo" style="display:none;" autoplay></video>
             <canvas id="myCanvas"></canvas>
             <canvas id="myVideoCanvas" style="display:none;"></canvas>
             <img id="myImage" style="display:none;" src="">
+          </div>
+          <div class="col-sm-12 buttons">
+            <a id="downloadImage" href="" onclick="return false;" download="myimage.jpeg">
+              <div id="picSave">Save</div>
+            </a>
+            <div id="picShoot">Shoot</div>
+            <div id="picReset">Reset</div>
+          </div>
         </div>
-        <div class="row">
-            <div class="col span-1-of-3">
-                <!--TODO Bouton-->
-                <a class="btn btn-full" href="#" id="downloadImage" onclick="return false;" download="myimage.jpeg">Shoot</a>
-            </div>
-            <div class="col span-1-of-3">
-                <!--TODO Bouton-->
-                <a class="btn btn-ghost" href="#">Save</a>
-            </div>
-            <div class="col span-1-of-3">
-                <!--TODO Bouton-->
-                <a class="btn btn-ghost" href="#">Reset</a>
-            </div>
+      </div>
+    </div>
+    <div class="row infos">
+      <div class="col-sm-4 offset-md-4">
+        <div><img src="./lati.png">
+          <div id="latitude" class="infoss"> </div>
         </div>
-        <div class="row">
-            <!--<div class="col span-1-of-3">
-                <img src="resources/img/lati.png">
-                <div id="latitude" class="infoss"> </div>
-            </div>
-            <div class="col span-1-of-3">
-                <img src="resources/img/longi.png">
-                <div id="longitude" class="infoss"> </div>
-            </div>
-            <div class="col span-1-of-3">
-                <i class="ion-ios-calendar"></i>
-                <div id="dateTime" class="infoss"> </div>
-            </div>-->
+        <div><img src="./longi.png">
+          <div id="longitude" class="infoss"> </div>
         </div>
-    </header>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="vendors/js/respond.min.js"></script>
-    <script src="vendors/js/html5shiv.min.js"></script>
-    <script src="vendors/js/selectivizr.min.js"></script>
-    <script src="vendors/js/jquery.waypoints.min.js"></script>
-    <script src="resources/js/script.js"></script>
-    <script src="resources/js/param_camera.js"></script>
-
+        <div><img src="./calend.png">
+          <div id="dateTime" class="infoss"> </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
+
+<script>
+  /************** PARAMETRAGE CAMERA ******************/
+  function hasGetUserMedia() {
+    // Note: Opera is unprefixed.
+    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+  }
+
+  if (hasGetUserMedia()) {
+    // Good to go!
+  } else {
+    alert('getUserMedia() is not supported in your browser');
+  }
+
+  window.URL = window.URL || window.webkitURL;
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
+    navigator.msGetUserMedia;
+
+  /***************/
+
+  var video = document.getElementById("myVideo");
+  var image = document.getElementById("myImage");
+  var canvas = document.getElementById("myCanvas");
+  var videoCanvas = document.getElementById("myVideoCanvas");
+
+  /******* Listeners pour les boutons ******/
+
+  document.getElementById("picSave").addEventListener("click", function () {
+    document.getElementById("downloadImage").href = videoCanvas.toDataURL('image/webp');
+  });
+
+  document.getElementById("picShoot").addEventListener("click", function () {
+
+    if (myStream) {
+      // "image/webp" works in Chrome 18. In other browsers, this will fall back to image/png.
+      image.src = videoCanvas.toDataURL('image/webp');
+      // Active le bouton save
+      document.getElementById("downloadImage").onclick = "return true;";
+    }
+
+    image.style.display = "block";
+    canvas.style.display = "none";
+
+    var date = new Date();
+    $("#dateTime").empty().append(date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " : " +
+      date.getHours() + "h" + date.getMinutes());
+    if (waitting) {
+      alert("La localisation n'a pas eu le temps de charger");
+    }
+    setCoordonnees();
+
+  });
+
+  document.getElementById("picReset").addEventListener("click", function () {
+    // affiche le canvas
+    canvas.style.display = "block";
+    image.style.display = "none";
+
+    $("#dateTime").empty();
+    $("#latitude").empty();
+    $("#longitude").empty();
+  });
+
+  canvas.width = 640;
+  canvas.height = 480;
+  videoCanvas.width = 640;
+  videoCanvas.height = 480;
+
+  var ctxVideoCanvas = videoCanvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
+
+  var myStream = null;
+
+  var xStart = 0;
+  var yStart = 0;
+
+  var xStop = 480;
+  var yStop = 480;
+
+  var x = xStart;
+  var y = yStart;
+
+  function canvasPlayer() {
+    if (myStream) {
+      ctx.drawImage(video, 0, 0);
+      ctxVideoCanvas.drawImage(video, 0, 0);
+      var currentImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      var pixels = currentImage.data;
+      ctx.putImageData(currentImage, 0, 0);
+
+      // draw the cross
+      ctx.beginPath();
+      ctx.lineWidth = '3';
+      ctx.strokeStyle = '#4C8';
+      ctx.arc(canvas.width / 2, canvas.height / 2, 50, 0, Math.PI * 2, false);
+      ctx.stroke();
+      ctx.closePath();
+    }
+  }
+
+  if (navigator.getUserMedia) {
+    navigator.getUserMedia(
+      // Constraints
+      {
+        audio: true,
+        video: true
+      },
+      // Success Callback
+      function success(localMediaStream) {
+        video.src = window.URL.createObjectURL(localMediaStream);
+        myStream = localMediaStream;
+        // call canvasPlayer every 20ms
+        window.setInterval(canvasPlayer, 20);
+      },
+      // Error Callback
+      function fallback(err) {
+        // Log the error to the console.
+        console.log('The following error occurred when trying to use getUserMedia: ' + err);
+      }
+    );
+
+  } else {
+    alert('Sorry, your browser does not support getUserMedia');
+  }
+</script>
