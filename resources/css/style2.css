@@ -1,0 +1,60 @@
+/*TITTLE*/
+.container-fluid .row .col-sm-12 h1{
+	text-align: center;
+}
+
+.container-fluid .row .col-sm-12 img{
+	width: 100%;
+	max-height: 550px;
+}
+
+/* BUTTONS */
+.container-fluid .row .buttons{
+	margin-top: 5px;
+}
+
+.container-fluid .row .buttons div{
+	width: 33.33%;
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 5px 0;
+}
+
+.container-fluid .row .buttons #picSave{
+	background-color: #28a745;
+}
+
+.container-fluid .row .buttons #picShoot{
+	background-color: #17a2b8;
+}
+
+.container-fluid .row .buttons #picReset{
+	background-color: #dc3545;
+}
+.container-fluid .row .buttons #picSave:hover{
+	background-color: #218838;
+}
+
+.container-fluid .row .buttons #picShoot:hover{
+	background-color: #138496;
+}
+
+.container-fluid .row .buttons #picReset:hover{
+	background-color: #c82333;
+}
+
+/* INFOS */
+.container-fluid .infos{
+	margin-top: 15px;
+}
+.container-fluid .infos img{
+	margin-top: 10px;
+	height: 25px;
+}
+
+
+.container-fluid .infos .infoss{
+	float: right;
+    margin-top: 10px;
+}
