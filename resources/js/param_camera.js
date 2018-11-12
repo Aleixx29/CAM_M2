@@ -95,28 +95,22 @@ function canvasPlayer() {
         ctx.closePath();
     }
 }
-
-if (navigator.getUserMedia) {
-    navigator.getUserMedia(
+if (navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({
         // Constraints
-        {
-            audio: true,
-            video: true
-        },
-        // Success Callback
-        function success(localMediaStream) {
-            video.src = window.URL.createObjectURL(localMediaStream);
+        audio: true,
+        video: true
+    }).then(
+        // Promise Success
+        function (localMediaStream) {
+            video.srcObject = localMediaStream;
             myStream = localMediaStream;
             // call canvasPlayer every 20ms
             window.setInterval(canvasPlayer, 20);
-        },
-        // Error Callback
-        function fallback(err) {
-            // Log the error to the console.
+        }).catch(
+        // Promise Catch
+        function (err) {
             console.log('The following error occurred when trying to use getUserMedia: ' + err);
         }
     );
-
-} else {
-    alert('Sorry, your browser does not support getUserMedia');
 }
