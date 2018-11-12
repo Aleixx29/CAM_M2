@@ -26,11 +26,10 @@
         <div class="row">
             <div class="col-sm-6 offset-md-3">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <video id="myVideo" style="display:none;" autoplay></video>
-                        <canvas id="myCanvas"></canvas>
-                        <canvas id="myVideoCanvas" style="display:none;"></canvas>
-                        <img id="myImage" style="display:none;" src="">
+                    <div id="player" class="col-sm-12">
+                        <video id="video" style="display: none;"></video>
+                        <canvas id="canvas"></canvas>
+                        <img id="photo" style="display:none;">
                     </div>
                     <div class="col-sm-12 buttons">
                         <a id="downloadImage" href="" onclick="return false;" download="myimage.jpeg">
