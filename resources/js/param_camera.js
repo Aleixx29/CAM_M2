@@ -51,20 +51,15 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
     .catch(function (err) {
         console.log("An error occurred! " + err);
     });
+
 video.addEventListener('canplay', function (ev) {
     if (!streaming) {
-        height = video.videoHeight / (video.videoWidth / width);
-
-        video.setAttribute('width', width);
-        video.setAttribute('height', height);
-        canvas.setAttribute('width', width);
-        canvas.setAttribute('height', height);
-        photo.style.width = width + 'px';
-        photo.style.height = height + 'px';
+        initvideo();
 
         streaming = true;
     }
 }, false);
+
 video.addEventListener('play', function () {
     var $this = this; //cache
     (function loop() {
@@ -88,15 +83,39 @@ video.addEventListener('play', function () {
         }
     })();
 }, 0);
+
 video.addEventListener('loadedmetadata', function () {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 });
+
 startbutton.addEventListener('click', function (ev) {
     takepicture();
     ev.preventDefault();
 }, false);
 clearphoto();
+
+window.addEventListener('orientationchange', changescreen_handler);
+window.addEventListener('resize', changescreen_handler);
+
+function changescreen_handler() {
+    video.pause();
+    initvideo();
+    video.play();
+}
+
+function initvideo(){
+    console.log("init");
+    width = document.getElementById("player").offsetWidth;
+    height = video.videoHeight / (video.videoWidth / width);
+
+    video.setAttribute('width', width);
+    video.setAttribute('height', height);
+    canvas.setAttribute('width', width);
+    canvas.setAttribute('height', height);
+    photo.style.width = width + 'px';
+    photo.style.height = height + 'px';
+}
 
 function clearphoto() {
     var context = canvas.getContext('2d');
