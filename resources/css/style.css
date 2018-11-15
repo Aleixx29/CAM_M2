@@ -420,6 +420,11 @@ header .row #player {
     padding-top: 5%;
 }
 
+.bouton_action .bouton_full{
+    display: inline-block;
+    margin-left: 200px;
+}
+
 /* ----------------------------------------------- */
 /* CITIES */
 /* ----------------------------------------------- */
