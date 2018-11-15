@@ -25,7 +25,10 @@ body {
     overflow-x: hidden;
 }
 
-.clearfix {zoom: 1;}
+.clearfix {
+    zoom: 1;
+}
+
 .clearfix:after {
     content: '.';
     clear: both;
@@ -120,7 +123,7 @@ h2:after {
     color: #e74c3c;
     font-size: 120%;
     margin-right: 10px;
-    
+
     /*secrets to align text and icons*/
     line-height: 120%;
     vertical-align: middle;
@@ -222,7 +225,7 @@ header {
     margin-top: 20px;
 }
 
-.logo-black { 
+.logo-black {
     display: none;
     height: 50px;
     width: auto;
@@ -285,7 +288,9 @@ header {
     z-index: 9999;
 }
 
-.sticky .main-nav { margin-top: 18px; }
+.sticky .main-nav {
+    margin-top: 18px;
+}
 
 .sticky .main-nav li a:link,
 .sticky .main-nav li a:visited {
@@ -293,8 +298,13 @@ header {
     color: #555;
 }
 
-.sticky .logo { display: none; }
-.sticky .logo-black { display: block; }
+.sticky .logo {
+    display: none;
+}
+
+.sticky .logo-black {
+    display: block;
+}
 
 /* ----------------------------------------------- */
 /* FEATURES */
@@ -411,6 +421,7 @@ header {
     width: auto;
     margin-right: 10px;
 }
+
 /* ----------------------------------------------- */
 /* CAM */
 /* ----------------------------------------------- */
@@ -420,9 +431,43 @@ header .row #player {
     padding-top: 5%;
 }
 
-.bouton_action .bouton_full{
+.bouton_action .bouton_full {
     display: inline-block;
     margin-left: 200px;
+}
+
+.bouton_full:link,
+.bouton_full:visited {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 200px;
+    -webkit-transition: background-color 0.2s, border 0.2s, color 0.2s;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+.bouton_full:link,
+.bouton_full:visited {
+    background-color: #e74c3c;
+    border: 1px solid #e74c3c;
+    color: #fff;
+    margin-right: 15px;
+}
+
+.bouton_full:hover,
+.bouton_full:active {
+    border: 1px solid #a82315;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: #a82315;
+}
+
+.bouton_full:hover,
+.bouton_full:active {
+    border: 1px solid #a82315;
 }
 
 /* ----------------------------------------------- */
@@ -568,7 +613,9 @@ input[type=checkbox] {
     margin: 10px 5px 10px 0;
 }
 
-*:focus {outline: none;}
+*:focus {
+    outline: none;
+}
 
 
 /* ----------------------------------------------- */
@@ -603,7 +650,7 @@ footer {
 }
 
 .footer-nav li a:link,
-.footer-nav li a:visited, 
+.footer-nav li a:visited,
 .social-links li a:link,
 .social-links li a:visited {
     text-decoration: none;
@@ -667,8 +714,7 @@ footer p {
 
 .js--wp-1,
 .js--wp-2,
-.js--wp-3
-{
+.js--wp-3 {
     opacity: 0;
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
@@ -684,5 +730,3 @@ footer p {
 .js--wp-3.animated {
     opacity: 1;
 }
-
-
