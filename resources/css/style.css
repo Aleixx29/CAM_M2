@@ -465,20 +465,24 @@ header .row #player {
     border: 1px solid #a82315;
 }
 
-.row .infos{
+.row .infos {
     margin-top: 15px;
 
 }
 
-.row .infos img{
+.row .infos img {
     margin-top: 10px;
-	height: 25px;
+    height: 25px;
 }
 
 .row .infos .infoss {
     float: right;
     margin-top: 10px;
     color: white;
+}
+
+a.disabled {
+    pointer-events: none;
 }
 
 /* ----------------------------------------------- */
