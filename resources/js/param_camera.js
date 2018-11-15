@@ -28,6 +28,10 @@ ctx = canvas.getContext('2d');
 
 /******* Listeners pour les boutons ******/
 
+document.getElementById("downloadImage").addEventListener("click", function () {
+    console.log('save');
+});
+
 document.getElementById("picReset").addEventListener("click", function () {
     // affiche le canvas
     canvas.style.display = "block";
@@ -67,11 +71,17 @@ video.addEventListener('play', function () {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = '#4C8';
-            ctx.arc(canvas.width / 2, canvas.height / 2, 50, 0, Math.PI * 2, false);
-            ctx.moveTo(canvas.width / 2, canvas.height / 2 - 35);
-            ctx.lineTo(canvas.width / 2, canvas.height / 2 + 35);
-            ctx.moveTo(canvas.width / 2 - 35, canvas.height / 2);
-            ctx.lineTo(canvas.width / 2 + 35, canvas.height / 2);
+            ctx.arc(canvas.width / 2, canvas.height / 2, 20, 0, Math.PI * 2, false);
+            ctx.moveTo(canvas.width / 2, canvas.height / 2 - 30);
+            ctx.lineTo(canvas.width / 2, canvas.height / 2 - 20);
+            ctx.moveTo(canvas.width / 2, canvas.height / 2 + 30);
+            ctx.lineTo(canvas.width / 2, canvas.height / 2 + 20);
+
+            ctx.moveTo(canvas.width / 2 - 30, canvas.height / 2);
+            ctx.lineTo(canvas.width / 2 - 20, canvas.height / 2);
+            ctx.moveTo(canvas.width / 2 + 30, canvas.height / 2);
+            ctx.lineTo(canvas.width / 2 + 20, canvas.height / 2);
+
             ctx.stroke();
             ctx.closePath();
             setTimeout(loop, 1000 / 30); // drawing at 30fps
