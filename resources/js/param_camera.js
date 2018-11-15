@@ -73,10 +73,10 @@ video.addEventListener('play', function () {
             ctx.lineWidth = '3';
             ctx.strokeStyle = '#4C8';
             ctx.arc(canvas.width / 2, canvas.height / 2, 50, 0, Math.PI * 2, false);
-            ctx.moveTo(canvas.width / 2, canvas.height / 2 - 55);
-            ctx.lineTo(canvas.width / 2, canvas.height / 2 + 55);
-            ctx.moveTo(canvas.width / 2 - 55, canvas.height / 2);
-            ctx.lineTo(canvas.width / 2 + 55, canvas.height / 2);
+            ctx.moveTo(canvas.width / 2, canvas.height / 2 - 35);
+            ctx.lineTo(canvas.width / 2, canvas.height / 2 + 35);
+            ctx.moveTo(canvas.width / 2 - 35, canvas.height / 2);
+            ctx.lineTo(canvas.width / 2 + 35, canvas.height / 2);
             ctx.stroke();
             ctx.closePath();
             setTimeout(loop, 1000 / 30); // drawing at 30fps
