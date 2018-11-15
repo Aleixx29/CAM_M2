@@ -27,13 +27,34 @@ startbutton = document.getElementById('picShoot');
 ctx = canvas.getContext('2d');
 
 /******* Listeners pour les boutons ******/
+document.getElementById("filterGray").addEventListener("click", function (ev) {
+    var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    var pixels = imageData.data;
+    var nbPixels = pixels.length;
 
+    for (var i = 0; i < nbPixels; i++) {
+        // moyenne RGB pour obtenir le ton de gris
+        var average = (pixels[i * 4] + pixels[i * 4 + 1] + pixels[i * 4 + 2]) / 3;
+
+        pixels[i * 4] = average;
+        pixels[i * 4 + 1] = average;
+        pixels[i * 4 + 2] = average;
+
+        // On n'y touche pas car on ne veut pas appliquer de transparence
+        // pixels[i*4+3] = pour l'alpha
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+    var data = canvas.toDataURL('image/png');
+    photo.setAttribute('src', data);
+});
 document.getElementById("downloadImage").addEventListener("click", function () {
-    console.log('save');
+    document.getElementById("downloadImage").href = photo.src;
 });
 
 document.getElementById("picReset").addEventListener("click", function () {
     // affiche le canvas
+    video.play();
     canvas.style.display = "block";
     photo.style.display = "none";
 
@@ -66,7 +87,7 @@ video.addEventListener('play', function () {
             // draw video
             // fill horizontally
             var hRatio = (canvas.width / video.videoWidth) * video.videoHeight;
-            ctx.drawImage($this, 0,0, canvas.width, hRatio);
+            ctx.drawImage($this, 0, 0, canvas.width, hRatio);
             // draw the cross
             ctx.beginPath();
             ctx.lineWidth = '3';
@@ -109,7 +130,7 @@ function changescreen_handler() {
     video.play();
 }
 
-function initvideo(){
+function initvideo() {
     width = document.getElementById("player").offsetWidth;
     height = video.videoHeight / (video.videoWidth / width);
 
@@ -142,8 +163,8 @@ function takepicture() {
         photo.setAttribute('src', data);
         photo.style.display = "block";
         canvas.style.display = "none";
+        video.pause();
         document.getElementById("downloadImage").onclick = "return true;";
-        document.getElementById("downloadImage").href = photo.src;
         var date = new Date();
         $("#dateTime").empty().append(date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " : " +
             date.getHours() + "h" + date.getMinutes());
