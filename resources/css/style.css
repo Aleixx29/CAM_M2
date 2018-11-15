@@ -431,7 +431,7 @@ header .row #player {
     padding-top: 5%;
 }
 
-.bouton_action .bouton_full {
+.bouton_full {
     display: inline-block;
     margin-left: 200px;
 }
@@ -468,6 +468,22 @@ header .row #player {
 .bouton_full:hover,
 .bouton_full:active {
     border: 1px solid #a82315;
+}
+
+.row .infos{
+    margin-top: 15px;
+
+}
+
+.row .infos img{
+    margin-top: 10px;
+	height: 25px;
+}
+
+.row .infos .infoss {
+    float: right;
+    margin-top: 10px;
+    color: white;
 }
 
 /* ----------------------------------------------- */
