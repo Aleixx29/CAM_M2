@@ -18,7 +18,6 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 
 var streaming = false;
 width = document.getElementById("player").offsetWidth;
-console.log(width);
 
 
 video = document.getElementById('video');
@@ -28,10 +27,6 @@ startbutton = document.getElementById('picShoot');
 ctx = canvas.getContext('2d');
 
 /******* Listeners pour les boutons ******/
-
-document.getElementById("picSave").addEventListener("click", function () {
-    document.getElementById("downloadImage").href = photo.src;
-});
 
 document.getElementById("picReset").addEventListener("click", function () {
     // affiche le canvas
@@ -105,7 +100,6 @@ function changescreen_handler() {
 }
 
 function initvideo(){
-    console.log("init");
     width = document.getElementById("player").offsetWidth;
     height = video.videoHeight / (video.videoWidth / width);
 
@@ -139,6 +133,7 @@ function takepicture() {
         photo.style.display = "block";
         canvas.style.display = "none";
         document.getElementById("downloadImage").onclick = "return true;";
+        document.getElementById("downloadImage").href = photo.src;
         var date = new Date();
         $("#dateTime").empty().append(date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " : " +
             date.getHours() + "h" + date.getMinutes());
