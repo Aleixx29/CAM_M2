@@ -431,9 +431,8 @@ header .row #player {
     padding-top: 5%;
 }
 
-.bouton_full {
-    display: inline-block;
-    margin-left: 200px;
+.pad_left {
+    padding-left: 10%;
 }
 
 .bouton_full:link,
