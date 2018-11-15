@@ -57,9 +57,9 @@ document.getElementById("picReset").addEventListener("click", function () {
     video.play();
     canvas.style.display = "block";
     photo.style.display = "none";
-    document.getElementById("filterGray").classList.remove("disabled");
-    document.getElementById("picReset").classList.remove("disabled");
-    document.getElementById("downloadImage").classList.remove("disabled");
+    document.getElementById("filterGray").classList.add("disabled");
+    document.getElementById("picReset").classList.add("disabled");
+    document.getElementById("downloadImage").classList.add("disabled");
     document.getElementById("downloadImage").href = '#';
 
     $("#dateTime").empty();
@@ -123,11 +123,11 @@ video.addEventListener('loadedmetadata', function () {
 });
 
 startbutton.addEventListener('click', function (ev) {
+    document.getElementById("filterGray").classList.remove("disabled");
+    document.getElementById("picReset").classList.remove("disabled");
+    document.getElementById("downloadImage").classList.remove("disabled");
     takepicture();
     ev.preventDefault();
-    document.getElementById("filterGray").classList.add("disabled");
-    document.getElementById("picReset").classList.add("disabled");
-    document.getElementById("downloadImage").classList.add("disabled");
 }, false);
 clearphoto();
 
