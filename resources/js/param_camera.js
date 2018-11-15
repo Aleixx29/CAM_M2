@@ -92,16 +92,19 @@ video.addEventListener('play', function () {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = '#4C8';
-            ctx.arc(canvas.width / 2, canvas.height / 2, 20, 0, Math.PI * 2, false);
-            ctx.moveTo(canvas.width / 2, canvas.height / 2 - 30);
-            ctx.lineTo(canvas.width / 2, canvas.height / 2 - 20);
-            ctx.moveTo(canvas.width / 2, canvas.height / 2 + 30);
-            ctx.lineTo(canvas.width / 2, canvas.height / 2 + 20);
+            var circleRadius = 0.07*canvas.height;
+            var circleOffset = 0.05*canvas.height;
+            ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2, false);
 
-            ctx.moveTo(canvas.width / 2 - 30, canvas.height / 2);
-            ctx.lineTo(canvas.width / 2 - 20, canvas.height / 2);
-            ctx.moveTo(canvas.width / 2 + 30, canvas.height / 2);
-            ctx.lineTo(canvas.width / 2 + 20, canvas.height / 2);
+            ctx.moveTo(canvas.width / 2, canvas.height / 2 - (circleRadius+circleOffset));
+            ctx.lineTo(canvas.width / 2, canvas.height / 2 - circleRadius);
+            ctx.moveTo(canvas.width / 2, canvas.height / 2 + (circleRadius+circleOffset));
+            ctx.lineTo(canvas.width / 2, canvas.height / 2 + circleRadius);
+
+            ctx.moveTo(canvas.width / 2 - (circleRadius+circleOffset), canvas.height / 2);
+            ctx.lineTo(canvas.width / 2 - circleRadius, canvas.height / 2);
+            ctx.moveTo(canvas.width / 2 + (circleRadius+circleOffset), canvas.height / 2);
+            ctx.lineTo(canvas.width / 2 + circleRadius, canvas.height / 2);
 
             ctx.stroke();
             ctx.closePath();
